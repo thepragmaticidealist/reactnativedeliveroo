@@ -6,7 +6,7 @@ export default {
     {
       name: "name",
       type: "string",
-      title:"Retaurant Name",
+      title:"Restaurant Name",
       validation: (Rule) => Rule.required(),
     },
     {
@@ -49,10 +49,7 @@ export default {
       type: "reference",
       title:"Category of the Restaurant",
       validation: (Rule) => Rule.required(),
-      
-      to: [{
-        type: "category"
-      }]
+      to: [{ type: "category" }]
     },
     {
       name: "dishes",
