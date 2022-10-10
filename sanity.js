@@ -4,9 +4,9 @@ import imageUrlBuilder from '@sanity/image-url'
 // Connects to the sanity backend
 const client = sanityClient({
     projectId: 'hv5z7kfb', //qwoxusny   
-    dataset: production,
+    dataset: 'production',
     useCdn: true,
-    apiVersion: '2021=10-21'
+    apiVersion: '2021-10-21'
 })
 
 const builder = imageUrlBuilder(client);
