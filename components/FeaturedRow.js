@@ -6,30 +6,29 @@ import {
 } from 'react-native-heroicons/outline';
 import RestaurantCard from './RestaurantCard';
 
-import sanityClient from '../sanity';
+// import sanityClient from '../sanity';
 
+// const [restuarants, setRestuarants] = useState([]);
 
 
 const FeaturedRow = ({id, title, description, featuredCategory}) => {
-    const [restuarants, setRestuarants] = useState([])
+    // useEffect(() => {
+    //     sanityClient.fetch(`
+    //     *[_type == "featured" && _id == $id] {
+    //         ...,
+    //         restaurants[] -> {
+    //           ...,
+    //           dishes[] ->, 
+    //             type -> {
+    //               name
+    //             }
+    //         }
+    //       }[0]
+    //     `, {id}).then(data => setRestuarants(data?.restuarants))
 
-    useEffect(() => {
-        sanityClient.fetch(`
-        *[_type == "featured" && _id == $id] {
-            ...,
-            restaurants[] -> {
-              ...,
-              dishes[] ->, 
-                type -> {
-                  name
-                }
-            }
-          }[0]
-        `, {id}).then(data => setRestuarants(data?.restuarants))
+    // }, [])
 
-    }, [])
-
-    console.log('Restaurants', restaurants);
+    // console.log('Restaurants', restaurants);
     
   return (
     <View>
@@ -47,7 +46,7 @@ const FeaturedRow = ({id, title, description, featuredCategory}) => {
                 className="pt-4"
             >
             {/* RestaurantCards */}
-            {
+            {/* {
                 restuarants?.map(restaurant => (
                     <RestaurantCard 
                         key={restaurant._id}
@@ -63,7 +62,7 @@ const FeaturedRow = ({id, title, description, featuredCategory}) => {
                         lat={restaurant.long}
                     />
                 ))
-            }
+            } */}
             </ScrollView>
     </View>
   )
