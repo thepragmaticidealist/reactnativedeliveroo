@@ -1,5 +1,5 @@
 {
-  "name": "reactnativedeliveroo",
+  "name": "reactnativedeliverooclone",
   "private": true,
   "version": "1.0.0",
   "description": "",
@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "@sanity/base": "^2.34.0",
+    "@sanity/client": "^3.4.1",
     "@sanity/core": "^2.34.0",
     "@sanity/default-layout": "^2.34.0",
     "@sanity/default-login": "^2.34.0",
@@ -27,7 +28,6 @@
     "react-dom": "^17.0",
     "styled-components": "^5.2.0"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git@github.com:thepragmaticidealist/reactnativedeliveroo.git"
