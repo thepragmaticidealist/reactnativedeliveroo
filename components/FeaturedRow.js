@@ -23,9 +23,9 @@ const FeaturedRow = ({id, title, description, featuredCategory}) => {
                     }
                 }
             }[0]`,{id}).then(data => setRestaurants(data?.restaurants))
-    }, [])
+    }, [id])
 
-    console.log(restaurants)
+    // console.log(restaurants)
 
     return (
     <View>
