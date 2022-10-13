@@ -11,6 +11,7 @@ import {
     QuestionMarkCircleIcon,
     ChevronRightIcon
 } from 'react-native-heroicons/solid';
+import { Button } from 'react-native-web';
 
 
 const  RestaurantScreen = () => {
@@ -74,10 +75,11 @@ const  RestaurantScreen = () => {
                 </TouchableOpacity>
 
                 <View>
-                    <Text>
-                        
+                    <Text className="text-xl font-bold px-4 pt-6 mb-3">
+                        Menu
                     </Text>
                 </View>
+                
                 
 
         </View>
