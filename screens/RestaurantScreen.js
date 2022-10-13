@@ -1,8 +1,9 @@
 import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import React, { useEffect, useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import {useRoute} from '@react-navigation/native'
 import { urlFor } from '../sanity';
+
 
 import {
     ArrowLeftCircleIcon,
@@ -11,7 +12,7 @@ import {
     QuestionMarkCircleIcon,
     ChevronRightIcon
 } from 'react-native-heroicons/solid';
-import { Button } from 'react-native-web';
+import DishRow from '../components/DishRow';
 
 
 const  RestaurantScreen = () => {
@@ -22,6 +23,7 @@ const  RestaurantScreen = () => {
             headerShown: false
         })
     },[]);
+    
 
   const {
     params: {
@@ -37,6 +39,8 @@ const  RestaurantScreen = () => {
         lat 
     }
   } = useRoute();
+
+//   console.log('Dishes', dishes)
 
   return (
     <ScrollView>
@@ -79,7 +83,19 @@ const  RestaurantScreen = () => {
                         Menu
                     </Text>
                 </View>
-                
+                {/* Dishrows */}
+                {
+                    dishes.map(dish => (
+                        <DishRow
+                            key={dish._id}
+                            price={dish.price}
+                            name={dish.name}
+                            short_description={dish.short_description}
+                            image={dish.image}
+                         />
+                    ))
+                }
+
                 
 
         </View>
