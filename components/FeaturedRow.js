@@ -43,43 +43,6 @@ const FeaturedRow = ({id, title, description, featuredCategory}) => {
                 className="pt-4"
             >
             {/* RestaurantCards */}
-            {/* <RestaurantCard 
-                id ={1}
-                imgUrl="https://links.papareact.com/gn7"
-                title="Yo! Sushi"
-                short_description="Fresh sushi, daily." 
-                rating={4.5} 
-                genre="Japanese" 
-                address="123 Main Street" 
-                dishes={[]} 
-                long={20} 
-                lat={0}
-            />
-            <RestaurantCard 
-                id ={2}
-                imgUrl="https://links.papareact.com/gn7"
-                title="Yo! Sushi"
-                short_description="Fresh sushi, daily." 
-                rating={4.5} 
-                genre="Japanese" 
-                address="123 Main Street" 
-                dishes={[]} 
-                long={20} 
-                lat={0}
-            />
-            <RestaurantCard 
-                id ={3}
-                imgUrl="https://links.papareact.com/gn7"
-                title="Yo! Sushi"
-                short_description="Fresh sushi, daily." 
-                rating={4.5} 
-                genre="Japanese" 
-                address="123 Main Street" 
-                dishes={[]} 
-                long={20} 
-                lat={0}
-            /> */}
-
             {
                 restaurants?.map(restaurant => (
                     <RestaurantCard
