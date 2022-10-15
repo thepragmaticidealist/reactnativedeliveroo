@@ -56,7 +56,7 @@ const DishRow = ({
                     <View className="bg-white">
                     <TouchableOpacity className="flex-row space-x-2 items-center pb-3 pl-3">
                     {/* Increment or decrement */}
-                        <TouchableOpacity onPress={removeItemFromBasket}><MinusCircleIcon size={30} color={items.length <= 0 ? "grey" : "#00CCBB"} /></TouchableOpacity>
+                        <TouchableOpacity onPress={removeItemFromBasket} disabled={!items.length}><MinusCircleIcon size={30} color={items.length <= 0 ? "grey" : "#00CCBB"} /></TouchableOpacity>
                         <Text>{items.length}</Text>
                         <TouchableOpacity onPress={addItemToBasket}><PlusCircleIcon size={30} color="#00CCBB" /></TouchableOpacity>
                     </TouchableOpacity>
