@@ -16,9 +16,16 @@ import {
 import DishRow from '../components/DishRow';
 import BasketIcon from '../components/BasketIcon';
 
+import { useDispatch } from 'react-redux';
+import { setRestaurant } from '../features/restaurantSlice';
+
+import { formatCurrency } from "react-native-format-currency";
+
+
 
 const  RestaurantScreen = () => {
     const navigation = useNavigation();
+    const dispatch = useDispatch();
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -42,7 +49,12 @@ const  RestaurantScreen = () => {
     }
   } = useRoute();
 
-//   console.log('Dishes', dishes)
+//   console.log('Dishes', dishes);
+
+  useEffect(() => {
+    dispatch(setRestaurant({id, imgUrl, title, short_description, rating, genre, address, 
+      dishes, long, lat}))}, [dispatch])
+  
 
   return (
     <>
@@ -99,7 +111,7 @@ const  RestaurantScreen = () => {
                               />
                           ))
                       }
-                      </View>
+                  </View>
                   
           </View>
         </View>
