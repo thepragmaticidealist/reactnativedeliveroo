@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { selectRestaurant } from '../features/restaurantSlice';
-import { selectBasketItems, removeFromBasket } from '../features/basketSlice';
+import { selectBasketItems, removeFromBasket, selectBasketTotal } from '../features/basketSlice';
 
 
 import { urlFor } from '../sanity';
@@ -15,11 +15,13 @@ import {
 } from 'react-native-heroicons/solid';
 
 import { formatCurrency } from "react-native-format-currency";
+import { Button } from 'react-native-web';
 
 const BasketScreen = () => {
     const navigation = useNavigation();
     const restaurant = useSelector(selectRestaurant);
     const items = useSelector(selectBasketItems)
+    const basketTotal = useSelector(selectBasketTotal);
     const dispatch = useDispatch();
     const [groupedItemsInBasket, setgroupedItemsInBasket] = useState([])
 
@@ -60,7 +62,7 @@ const BasketScreen = () => {
                             <Text className="text-[#00CCBB]">{items.length} x</Text>
                             <Image source={{uri: urlFor(items[0]?.image).url()}} className="h-12 w-12 rounded-full" /> 
                             <Text className="flex-1 ">{items[0]?.name}</Text>
-                            <Text className="text-gray-600">{formatCurrency({amount:items[0]?.price , code: "EUR"})}</Text>
+                            <Text className="text-gray-600">{formatCurrency({amount: items[0]?.price , code: "EUR"})}</Text>
 
                             <TouchableOpacity>
                                 <Text className="text-[#00CCBB] text-xs" onPress={() => dispatch(removeFromBasket({id: key}))}>
@@ -72,6 +74,24 @@ const BasketScreen = () => {
                     ))
                 }
             </ScrollView>
+            <View className="p-5 bg-white mt-5 space-y-4">
+                <View className="flex-row justify-between">
+                    <Text className="text-gray-400">Subtotal</Text>
+                    <Text className="text-gray-400">{formatCurrency({amount: basketTotal , code: "EUR"})}</Text>
+                </View>
+                <View className="flex-row justify-between">
+                    <Text className="text-gray-400">Delivery Fee</Text>
+                    <Text className="text-gray-400">{formatCurrency({amount: '5.99' , code: "EUR"})}</Text>
+                </View>
+                <View className="flex-row justify-between">
+                    <Text className="font-extrabold">Order Total</Text>
+                    <Text>{basketTotal + 5.99}</Text>
+                </View>
+
+                <TouchableOpacity className="bg-[#00CCBB] rounded-4 p-4">
+                    <Text className="text-center text-white text-lg font-bold">Place Order</Text>
+                </TouchableOpacity>
+            </View>
       </View>
     </SafeAreaView>
   )
