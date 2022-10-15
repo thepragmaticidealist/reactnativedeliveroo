@@ -19,6 +19,9 @@ import BasketIcon from '../components/BasketIcon';
 import { useDispatch } from 'react-redux';
 import { setRestaurant } from '../features/restaurantSlice';
 
+import { formatCurrency } from "react-native-format-currency";
+
+
 
 const  RestaurantScreen = () => {
     const navigation = useNavigation();
