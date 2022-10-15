@@ -1,5 +1,5 @@
 import { Image, Text, TouchableOpacity, View } from 'react-native'
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 
 import { urlFor } from '../sanity';
 
@@ -10,11 +10,28 @@ import {
 
 import { formatCurrency } from "react-native-format-currency";
 
+import { useDispatch, useSelector } from 'react-redux';
+import { addToBasket, removeFromBasket, selectBasketItemsWithId } from '../features/basketSlice';
+
 
 const DishRow = ({
     id, name, short_description, image, price
 }) => {
     const [isPressed, setIsPressed] = useState(false);
+    const items = useSelector((state) => selectBasketItemsWithId(state, id));
+    const dispatch = useDispatch();
+
+    const addItemToBasket = () => {
+        dispatch(addToBasket({id, name, short_description, price, image}))
+    }
+    const removeItemFromBasket = () => {
+        if (!(items.length > 0)) {
+            //  Can't remove stuff since there's nothing in the basket
+            return;
+        } else { dispatch(removeFromBasket({id})) }
+    }
+
+    // console.log(items)
 
     return (
         <>
@@ -39,9 +56,9 @@ const DishRow = ({
                     <View className="bg-white">
                     <TouchableOpacity className="flex-row space-x-2 items-center pb-3 pl-3">
                     {/* Increment or decrement */}
-                        <TouchableOpacity><MinusCircleIcon size={30} color="#00CCBB" /></TouchableOpacity>
-                        <Text>3</Text>
-                        <TouchableOpacity><PlusCircleIcon size={30} color="#00CCBB" /></TouchableOpacity>
+                        <TouchableOpacity onPress={removeItemFromBasket}><MinusCircleIcon size={30} color={items.length <= 0 ? "grey" : "#00CCBB"} /></TouchableOpacity>
+                        <Text>{items.length}</Text>
+                        <TouchableOpacity onPress={addItemToBasket}><PlusCircleIcon size={30} color="#00CCBB" /></TouchableOpacity>
                     </TouchableOpacity>
                 </View>
                 )
