@@ -10,6 +10,7 @@ import {
 } from 'react-native-heroicons/solid';
 
 import * as Progress from 'react-native-progress';
+import MapView, { Marker } from 'react-native-maps';
 
 
 const DeliveryScreen = () => {
@@ -38,12 +39,42 @@ const DeliveryScreen = () => {
             </View>
             <Progress.Bar size={30} indeterminate={true} color="#00CCBB" />
             <View>
-            <Text className="text-md text-gray-400 mt-5"> Your order at {restaurant.title} is being prepared</Text>
+            <Text className="text-md text-gray-400 mt-5">Your order at {restaurant.title} is being prepared</Text>
           </View>
           </View>
-          
         </SafeAreaView>
-      </View>
+        <MapView
+            initialRegion={{
+              latitude: restaurant.lat,
+              longitude: restaurant.long,
+              latitudeDelta: 0.005,
+              longitudeDelta: 0.005
+            }}
+            mapType="mutedStandard"
+            className="z-0 flex-1 -mt-10"
+          >
+          <Marker 
+            coordinate={{
+              latitude: restaurant.lat,
+              longitude: restaurant.long
+            }}
+            title={restaurant.title}
+            description={restaurant.short_description}
+            identifier="origin"
+            pinColor='#00CCBB'
+
+          />
+          </MapView>
+          <SafeAreaView className="flex-row bg-white items-center space-x-5 h-28">
+            <Image source={{uri: "https://links.papareact.com/wru"}} className="h-12 w-12 bg-gray-300 p-4 rounded-full ml-5"/>
+            <View className="flex-1">
+              <Text className="text-lg">Mabishi Wakio</Text>
+              <Text className="text-gray-400">Your Rider</Text>
+            </View>
+            <Text className="text-[#00CCBB] font-bold mr-5 text-lg">Call</Text>
+          </SafeAreaView>
+        </View>
+
     )
 }
 
